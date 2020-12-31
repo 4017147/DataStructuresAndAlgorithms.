@@ -9,7 +9,7 @@ import java.util.Objects;
  * @author marker.li lyl
  * @date 2021/12/30
  */
-public class ArrayList<E> {
+public class MyArrayList<E> {
 
   private int size;
 
@@ -21,12 +21,12 @@ public class ArrayList<E> {
 
   public static final int DEFAULT_CAPACITY = 10;
 
-  public ArrayList() {
+  public MyArrayList() {
     elements = DEFAULTCAPATICY_EMPTY_ELEMENTDATA;
   }
 
 
-  public ArrayList(int initialCapacity) {
+  public MyArrayList(int initialCapacity) {
     if (initialCapacity > 0) {
       elements = new Object[initialCapacity];
     } else if (initialCapacity == 0) {
