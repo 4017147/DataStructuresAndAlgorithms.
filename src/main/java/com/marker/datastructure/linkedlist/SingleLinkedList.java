@@ -96,6 +96,21 @@ public class SingleLinkedList {
     return head;
   }
 
+  public Node sort2() {
+    Node curr;
+    Node next;
+    for (curr = this.head; curr.next != null; curr = curr.next) {
+      for (next = this.head; next.next != null; next = next.next) {
+        if (next.e > next.next.e) {
+          int temp = next.e;
+          next.e = next.next.e;
+          next.next.e = temp;
+        }
+      }
+    }
+    return null;
+  }
+
   /**
    * 去掉重复元素: 需要额外的存储空间hashtable，调用hashtable.containsKey()来判断重复结点
    */
@@ -113,6 +128,22 @@ public class SingleLinkedList {
       curr = curr.next;
     }
   }
+
+  public void distinct2() {
+    Node temp = this.head;
+    Node next = temp.next;
+    while (temp.next != null) {
+      while (next.next != null) {
+        if (next.next.e == next.e) {
+          next.next = next.next.next;
+        } else {
+          next = next.next;
+        }
+      }
+      temp = temp.next;
+    }
+  }
+
 
   /**
    * 反转链表，在反转指针钱一定要保存下个结点的指针
