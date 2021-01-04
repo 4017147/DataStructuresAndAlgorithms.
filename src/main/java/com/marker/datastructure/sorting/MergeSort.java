@@ -51,7 +51,6 @@ public class MergeSort {
       
     // 归并排序的实现  
     public static void main(String[] args) {  
-        
         int[] nums = {12,4,13,25,92,11,9,3,2};  
         MergeSort.sort(nums, 0, nums.length-1);  
         System.out.println(Arrays.toString(nums));  
