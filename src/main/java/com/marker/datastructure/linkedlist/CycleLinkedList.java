@@ -87,7 +87,7 @@ public class CycleLinkedList {
    * 查找正数第k个元素
    */
   public Node findNode(int k) {
-    if (k < 1 || k > this.length()) {// 不合法的k
+    if (k < 1 || k > this.length()) {
       return null;
     }
     Node temp = head;
