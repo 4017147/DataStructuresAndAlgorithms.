@@ -2,6 +2,13 @@ package com.marker.datastructure.queue;
 
 import java.util.Arrays;
 
+/**
+ * 基于数组的队列实现
+ * 
+ * @describe
+ * @author marker.li lyl
+ * @date 2021/01/05
+ */
 public class SeqQueue<E> {
 
   private Object[] queue;

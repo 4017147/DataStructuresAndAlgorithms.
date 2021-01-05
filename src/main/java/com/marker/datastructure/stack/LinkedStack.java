@@ -14,12 +14,12 @@ public class LinkedStack<E> {
     size++;
   }
 
-  public E pop() {
+  public Node<E> pop() {
     Node<E> node = this.top;
     this.top = this.top.next;
     this.size--;
     node.next = null;
-    return node.data;
+    return node;
   }
 
   public boolean isEmpty() {
@@ -47,6 +47,9 @@ public class LinkedStack<E> {
     return node;
   }
 
+  public int size() {
+    return this.size;
+  }
 
   public static void main(String[] args) {
     LinkedStack<String> stack = new LinkedStack<String>();
@@ -56,15 +59,15 @@ public class LinkedStack<E> {
     stack.push("marker4");
     System.out.println(stack.toString());
     String e = stack.peek().data;
-    String e2 = stack.pop();
+    String e2 = stack.pop().data;
     String e3 = stack.peek().data;
     System.out.println(e);
     System.out.println(e2);
     System.out.println(e3);
-    System.out.println("sss:"+stack.toString());
+    System.out.println("sss:" + stack.toString());
   }
 
-  public class Node<T> {
+  public static class Node<T> {
     // 包可见性
     Node<T> next;
 
@@ -73,6 +76,10 @@ public class LinkedStack<E> {
     public Node(T data) {
       super();
       this.data = data;
+    }
+
+    public T data() {
+      return this.data;
     }
 
     @Override
