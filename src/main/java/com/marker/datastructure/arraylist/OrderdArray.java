@@ -15,11 +15,11 @@ public class OrderdArray {
 
   private int capacity;
 
-  private Integer[] elements;
+  private int[] elements;
 
   public OrderdArray(int capacity) {
     super();
-    this.elements = new Integer[capacity];
+    this.elements = new int[capacity];
     this.capacity = capacity;
   }
 
@@ -86,7 +86,6 @@ public class OrderdArray {
     System.out.println("index:" + index + ",size:" + size);
     int length = size - 1;
     System.arraycopy(this.elements, index + 1, this.elements, index, length - index);
-    this.elements[length] = null;
     size--;
     return flag;
   }
@@ -100,12 +99,49 @@ public class OrderdArray {
 
 
   public void merge(OrderdArray array) {
-    int size = array.size;
-    Integer[] es = array.elements;
-    this.capacity += size;
-    this.elements = Arrays.copyOf(this.elements, this.capacity);
-    for (int i = 0; i < size; i++)
-      this.add(es[i]);
+    this.elements = merge(this.elements, array.elements);
+    this.size = this.elements.length;
   }
 
+
+  public static boolean checkSort(int[] nums) {
+    boolean exchange = true;
+    cs: for (int i = 0; i < nums.length - 1; i++) {
+      if (nums[i] > nums[i + 1]) {
+        exchange = false;
+        break cs;
+      }
+    }
+    return exchange;
+  }
+
+
+  public static int[] merge(int[] a, int[] b) {
+    System.out.println("a:" + Arrays.toString(a));
+    System.out.println("b:" + Arrays.toString(b));
+    if (checkSort(a) && checkSort(b)) {
+      int l = a.length + b.length;
+      int[] temp = new int[l];
+      int i = 0, j = 0, h = 0;
+      while (i < a.length || j < b.length) {
+        if (j == b.length && i < a.length) {
+          temp[h++] = a[i++];
+        } else if (i == a.length && j < b.length) {
+          temp[h++] = b[j++];
+        } else if (a[i] > b[j]) {
+          temp[h++] = b[j++];
+        } else if (a[i] <= b[j]) {
+          temp[h++] = a[i++];
+        }
+      }
+      return temp;
+    }
+    return null;
+  }
+
+  public static void main(String[] args) {
+//    merge(new int[] {1, 2, 3, 4}, new int[] {0, 2, 4, 5, 6, 7, 8});
+    boolean is = checkSort(new int[] {1, 2, 3, 4});
+    System.out.println(is);
+  }
 }

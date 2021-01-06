@@ -10,10 +10,10 @@ public class Client {
 
   public static void main(String[] args) {
 //    arrayListDemo();
-//    orderdArray();
+    orderdArray();
 //    int[] nums = {-1, 0, 1, 2, -1, -4};
-    int[] nums = {3, -2, 1, 0};
-    System.out.println(threeSum(nums));
+//    int[] nums = {3, -2, 1, 0};
+//    System.out.println(threeSum(nums));
   }
 
 
@@ -51,7 +51,7 @@ public class Client {
     System.out.println("find:" + array.find(10));
     System.out.println("find:" + array.find(5));
     System.out.println("find:" + array.find(3));
-    OrderdArray array2 = new OrderdArray(5);
+    OrderdArray array2 = new OrderdArray(3);
     array2.add(44);
     array2.add(35);
     array2.add(100);
