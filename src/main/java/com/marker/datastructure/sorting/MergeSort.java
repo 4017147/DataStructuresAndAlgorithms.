@@ -4,55 +4,48 @@ import java.util.Arrays;
 
 public class MergeSort {
 
-    public static int[] sort(int[] nums, int low, int high) {  
-        int mid = (low + high) / 2;  
-        if (low < high) {  
-            // 左边  
-            sort(nums, low, mid);  
-            // 右边  
-            sort(nums, mid + 1, high);  
-            // 左右归并  
-            merge(nums, low, mid, high);  
-        }  
-        return nums;  
-    }  
-  
-    public static void merge(int[] nums, int low, int mid, int high) {  
-        int[] temp = new int[high - low + 1];  
-        int i = low;// 左指针  
-        int j = mid + 1;// 右指针  
-        int k = 0;  
-  
-        // 把较小的数先移到新数组中  
-        while (i <= mid && j <= high) {  
-            if (nums[i] <= nums[j]) {  
-                temp[k++] = nums[i++];  
-            } else {  
-                temp[k++] = nums[j++];  
-            }  
-        }  
-  
-        // 把左边剩余的数移入数组  
-        while (i <= mid) {  
-            temp[k++] = nums[i++];  
-        }  
-  
-        // 把右边边剩余的数移入数组  
-        while (j <= high) {  
-            temp[k++] = nums[j++];  
-        }  
-  
-        // 把新数组中的数覆盖nums数组  
-        for (int k2 = 0; k2 < temp.length; k2++) {  
-            nums[k2 + low] = temp[k2];  
-        }  
-    }  
-  
-      
-    // 归并排序的实现  
-    public static void main(String[] args) {  
-        int[] nums = {12,4,13,25,92,11,9,3,2};  
-        MergeSort.sort(nums, 0, nums.length-1);  
-        System.out.println(Arrays.toString(nums));  
-    }  
+  // 归并排序的实现
+  public static void main(String[] args) {
+    int[] nums = {12, 4, 13, 25, 92, 11, 9, 3, 2};
+    MergeSort.sort(nums, 0, nums.length - 1);
+    System.out.println(Arrays.toString(nums));
+//    int[] nums= {4, 12, 13, 25, 92, 2, 3, 9, 11};
+//    merge(nums, 0, 4, 8);
+  }
+
+  private static void sort(int[] nums, int left, int right) {
+    if (left < right) {
+      int mid = (left + right) / 2;
+      sort(nums, left, mid);
+      sort(nums, mid + 1, right);
+      merge(nums, left, mid, right);
+    }
+  }
+
+  private static void merge(int[] nums, int left, int mid, int right) {
+    int[] temp = new int[right - left + 1];
+    int l = left, r = mid + 1, index = 0;
+    // 方法1
+//    while (l <= mid || r <= right) {
+//      if (l <= mid && r == right + 1) {
+//        temp[index++] = nums[l++];
+//      } else if (r <= right && l == mid + 1) {
+//        temp[index++] = nums[r++];
+//      } else if (nums[l] <= nums[r]) {
+//        temp[index++] = nums[l++];
+//      } else {
+//        temp[index++] = nums[r++];
+//      }
+//    }
+//    方法2
+    while (l <= mid && r <= right) {
+      if (nums[l] <= nums[r]) temp[index++] = nums[l++];
+      else temp[index++] = nums[r++];
+    }
+    while (l <= mid) temp[index++] = nums[l++];
+    while (r <= right) temp[index++] = nums[r++];
+    index = 0;
+    while (left <= right) nums[left++] = temp[index++];
+    System.out.println(Arrays.toString(nums));
+  }
 }
