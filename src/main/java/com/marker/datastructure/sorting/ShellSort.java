@@ -16,15 +16,34 @@ public class ShellSort {
 
 
   public static int[] shellSort(int[] target) {
-
+    // gap为步长，每次减为原来的一半。
+    for (int gap = target.length / 2; gap > 0; gap /= 2) {
+//      // 共gap个组，对每一组都执行直接插入排序
+      for (int i = 0; i < gap; i++) {
+        group_sort(target, i, gap);
+      }
+      System.out.println(gap);
+    }
     return target;
   }
 
+  static void group_sort(int a[], int i, int gap) {
+    for (int j = i + gap; j < a.length; j += gap) {
+      // 如果a[j] < a[j-gap]，则寻找a[j]位置，并将后面数据的位置都后移。
+      if (a[j] < a[j - gap]) {
+        int tmp = a[j];
+        int k = j - gap;
+        while (k >= 0 && a[k] > tmp) {
+          a[k + gap] = a[k];
+          k -= gap;
+        }
+        a[k + gap] = tmp;
+      }
+    }
+  }
+
   public static void main(String[] args) {
-    System.out.println("\n----------------------\n");
-    System.out.println("希尔排序 ： ");
     int[] nums = {12, 4, 13, 25, 92, 11, 9, 3, 2};
-    System.out.println("原数组 ： " + Arrays.toString(nums));
     shellSort(nums);
     System.out.println(Arrays.toString(nums));
   }
