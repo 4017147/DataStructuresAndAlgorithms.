@@ -18,16 +18,16 @@ import java.util.Arrays;
  * 
  * 
  * 内部排序(在排序过程中数据元素完全在内存)
- * 
- * @author rico
- * @created 2017年5月20日 上午10:40:00
+ * @describe 
+ * @author marker.li lyl
+ * @date 2021/01/08
  */
 public class QuickSort {
 
   /**
    * @description 快排算法(递归算法)：在递去过程中就把问题解决了
-   * @author rico
-   * @created 2017年5月20日 下午5:12:06
+   * @author marker.li lyl
+   * @created 2021/01/08
    * @param target
    * @param left
    * @param right
@@ -46,8 +46,8 @@ public class QuickSort {
 
   /**
    * @description 序列划分，以第一个元素为基准元素
-   * @author rico
-   * @created 2017年5月20日 下午5:10:54
+   * @author marker.li lyl
+   * @created 2021/01/08
    * @param target 序列
    * @param left 序列左端
    * @param right 序列右端
