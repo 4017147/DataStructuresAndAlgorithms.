@@ -13,38 +13,60 @@ import java.util.Arrays;
  * @date 2021/01/08
  */
 public class ShellSort {
-
-
-  public static int[] shellSort(int[] target) {
-    // gap为步长，每次减为原来的一半。
-    for (int gap = target.length / 2; gap > 0; gap /= 2) {
-//      // 共gap个组，对每一组都执行直接插入排序
-      for (int i = 0; i < gap; i++) {
-        group_sort(target, i, gap);
-      }
-      System.out.println(gap);
+  /**
+   * 希尔排序 针对有序序列在插入时采用交换法
+   * 
+   * @param arr
+   */
+  public static void sort(int[] arr) {
+    int gaps = 1;
+    while (arr.length / 3 >= gaps) {
+      gaps = gaps * 3 + 1;
     }
-    return target;
+//    for (int gap = gaps; gap > 0; gap = (gap - 1) / 3) {
+//      for (int i = gap; i < arr.length; i++) {
+//        int j = i;
+//        int temp = arr[j];
+//        if (arr[j] < arr[j - gap]) {
+//          while (j - gap >= 0 && temp < arr[j - gap]) {
+//            arr[j] = arr[j - gap];
+//            j -= gap;
+//          }
+//          arr[j] = temp;
+//        }
+//      }
+//    }
+
+    for (int gap = gaps; gap > 0; gap = (gap - 1) / 3) {
+      for (int i = gap; i < arr.length; i++) {
+        int j = i;
+        while (j - gap >= 0 && arr[j] < arr[j - gap]) {
+          int temp = arr[j - gap];
+          arr[j - gap] = arr[j];
+          arr[j] = temp;
+          j -= gap;
+        }
+      }
+    }
+
   }
 
-  static void group_sort(int a[], int i, int gap) {
-    for (int j = i + gap; j < a.length; j += gap) {
-      // 如果a[j] < a[j-gap]，则寻找a[j]位置，并将后面数据的位置都后移。
-      if (a[j] < a[j - gap]) {
-        int tmp = a[j];
-        int k = j - gap;
-        while (k >= 0 && a[k] > tmp) {
-          a[k + gap] = a[k];
-          k -= gap;
-        }
-        a[k + gap] = tmp;
-      }
-    }
+  /**
+   * 交换数组元素
+   * 
+   * @param arr
+   * @param a
+   * @param b
+   */
+  public static void swap(int[] arr, int a, int b) {
+    int temp = arr[a];
+    arr[a] = arr[b];
+    arr[b] = temp;
   }
 
   public static void main(String[] args) {
     int[] nums = {12, 4, 13, 25, 92, 11, 9, 3, 2};
-    shellSort(nums);
+    sort(nums);
     System.out.println(Arrays.toString(nums));
   }
 }
