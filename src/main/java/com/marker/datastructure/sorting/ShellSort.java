@@ -51,22 +51,22 @@ public class ShellSort {
 
   }
 
-  public static void sort2(int[] arr) {
-    for (int gap = arr.length / 2; gap > 0; gap /= 2) {
-      for (int i = gap; i < arr.length; i++) {
+  public static void sort2(int[] nums) {
+    for (int gap = nums.length; gap > 0; gap /= 2) {
+      for (int i = gap; i < nums.length; i++) {
         int j = i;
-//        while (j - gap >= 0 && arr[j] < arr[j - gap]) {
-//          swap(arr, j, j - gap);
-//          j -= gap;
-//        }
-        int temp = arr[j];
-        if (arr[j] < arr[j - gap]) {
-          while (j - gap >= 0 && temp < arr[j - gap]) {
-            arr[j] = arr[j - gap];
+        int temp = nums[i];
+        if (nums[j] < nums[j - gap]) {
+          while (j - gap >= 0 && temp < nums[j - gap]) {
+            nums[j] = nums[j - gap];
             j -= gap;
           }
-          arr[j] = temp;
+          nums[j] = temp;
         }
+//        while (j - gap >= 0 && nums[j] < nums[j - gap]) {
+//          swap(nums, j, j - gap);
+//          j -= gap;
+//        }
       }
     }
   }

@@ -18,10 +18,10 @@ public class SelectSort {
   }
 
   public static void sort2(int[] nums) {
-    for (int i = 0; i < nums.length ; i++) {
+    for (int i = 0; i < nums.length; i++) {
       int minIndex = i;
-      for (int j = i+1; j < nums.length; j++) {
-        if (nums[j] < nums[minIndex])   swap(nums, j, minIndex);
+      for (int j = i + 1; j < nums.length; j++) {
+        if (nums[minIndex] > nums[j]) swap(nums, j, minIndex);
       }
     }
   }

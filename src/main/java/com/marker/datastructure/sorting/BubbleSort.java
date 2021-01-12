@@ -44,10 +44,10 @@ public class BubbleSort {
     }
   }
 
-  public static void sort(int[] arr) {
-    for (int i = 0; i < arr.length - 1; i++) {
-      for (int j = i; j < arr.length - i - 1; j++) {
-        if (arr[j + 1] < arr[j]) swap(arr, j + 1, j);
+  public static void sort(int[] nums) {
+    for (int i = 0; i < nums.length - 1; i++) {
+      for (int j = i; j < nums.length - 1 - i; j++) {
+        if (nums[j] > nums[j + 1]) swap(nums, j, j + 1);
       }
     }
   }

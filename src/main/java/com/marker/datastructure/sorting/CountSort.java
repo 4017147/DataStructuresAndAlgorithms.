@@ -34,27 +34,27 @@ public class CountSort {
   }
 
   public static void sort2(int[] nums) {
-    int max = Integer.MIN_VALUE;
-    int min = Integer.MAX_VALUE;
+    int max = Integer.MIN_VALUE, min = Integer.MAX_VALUE;
     for (int i : nums) {
       max = Math.max(i, max);
       min = Math.min(i, min);
     }
-    int[] c = new int[max - min + 1];
+    int c[] = new int[max - min + 1];
     for (int i = 0; i < nums.length; i++) {
       c[nums[i] - min]++;
     }
     for (int i = 1; i < c.length; i++) {
-      c[i] = c[i] + c[i - 1];
+      c[i] += c[i - 1];
     }
     int[] p = new int[nums.length];
-    for (int i = c.length; i >= 0; i--) {
+    for (int i = nums.length - 1; i >= 0; i--) {
       int pos = nums[i] - min;
-      int index = c[pos] - 1;
-      p[index] = nums[i];
+      int ix = c[pos] - 1;
+      p[ix] = nums[i];
       c[pos]--;
     }
-    System.out.println("排序后组 ： " + Arrays.toString(p));
+    for (int i = 0; i < nums.length; i++)
+      nums[i] = p[i];
   }
 
   public static void main(String[] args) {

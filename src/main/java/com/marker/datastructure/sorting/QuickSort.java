@@ -91,41 +91,25 @@ public class QuickSort {
 
   public static void sort(int[] nums, int left, int right) {
     if (left < right) {
-      int base_index = p3(nums, left, right);
+      int base_index = p2(nums, left, right);
       sort(nums, left, base_index - 1);
       sort(nums, base_index + 1, right);
     }
   }
 
   public static int p(int[] nums, int left, int right) {
-    int povit = nums[left];
-    int l = left + 1;
-    int r = right;
+    int povit = nums[left], r = right, l = left + 1;
     while (l <= r) {
-      while (l <= r && nums[r] > povit)
+      while (l <= r && nums[r] > povit) {
         r--;
-      while (l <= r && nums[l] <= povit)
+      }
+      while (l <= r && nums[l] <= povit) {
         l++;
+      }
       if (l < r) swap(nums, l, r);
     }
-    swap(nums, left, r);
+    swap(nums, r, left);
     return r;
-  }
-
-  public static int p3(int[] nums, int left, int right) {
-    int povit = nums[left];
-    while (left < right) {
-      while (left < right && nums[right] <= povit) {
-        right--;
-      }
-      nums[left] = nums[right];
-      while (left < right && nums[left] >= povit) {
-        left++;
-      }
-      nums[right] = nums[left];
-    }
-    nums[left] = povit;
-    return left;
   }
 
   public static int p2(int[] nums, int left, int right) {
@@ -143,6 +127,8 @@ public class QuickSort {
     nums[left] = povit;
     return left;
   }
+
+
 
   public static void swap(int[] nums, int left, int right) {
     int temp = nums[left];

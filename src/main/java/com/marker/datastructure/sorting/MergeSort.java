@@ -15,7 +15,7 @@ public class MergeSort {
 
   public static void sort2(int[] nums, int left, int right) {
     if (left < right) {
-      int mid = (right + left) / 2;
+      int mid = (left + right) / 2;
       sort2(nums, left, mid);
       sort2(nums, mid + 1, right);
       merge2(nums, left, mid, right);
@@ -23,23 +23,32 @@ public class MergeSort {
   }
 
   public static void merge2(int[] nums, int left, int mid, int right) {
-    int l = left, r = mid + 1, index = 0;
-    int[] t = new int[right - left + 1];
+    int l = left, r = mid + 1, t[] = new int[right - left + 1], i = 0;
+//    while (l <= mid && r <= right) {
+//      if (l == mid + 1 && r <= right) {
+//        t[i++] = nums[r++];
+//      } else if (r == right + 1 && l <= mid) {
+//        t[i++] = nums[l++];
+//      } else if (nums[l] <= nums[r])
+//        t[i++] = nums[l++];
+//      else if(nums[l] > nums[r]) {
+//        t[i++] = nums[r++];
+//      }
+//    }
+    
     while (l <= mid && r <= right) {
-      if (nums[l] <= nums[r])
-        t[index++] = nums[l++];
-      else
-        t[index++] = nums[r++];
+       if (nums[l] <= nums[r])
+        t[i++] = nums[l++];
+      else  
+        t[i++] = nums[r++];
     }
-    while (l <= mid) {
-      t[index++] = nums[l++];
-    }
-    while (r <= right) {
-      t[index++] = nums[r++];
-    }
-    index = 0;
+    while (l <= mid)
+      t[i++] = nums[l++];
+    while (r <= right)
+      t[i++] = nums[r++];
+    i = 0;
     while (left <= right) {
-      nums[left++] = t[index++];
+      nums[left++] = t[i++];
     }
   }
 

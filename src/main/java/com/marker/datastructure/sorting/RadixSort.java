@@ -47,24 +47,20 @@ public class RadixSort {
 
   public static int[] radixSort(int[] nums, int exp) {
     int[] c = new int[10];
- 
     for (int i = 0; i < nums.length; i++) {
-      int cp = (nums[i] / exp) % 10;
-      c[cp]++;
+      int pos = (nums[i] / exp) % 10;
+      c[pos]++;
     }
     for (int i = 1; i < c.length; i++) {
       c[i] += c[i - 1];
     }
-
-    int p[] = new int[nums.length];
-
+    int[] p = new int[nums.length];
     for (int i = nums.length - 1; i >= 0; i--) {
       int pos = (nums[i] / exp) % 10;
-      int index = c[pos] - 1;
-      p[index] = nums[i];
+      int ix = c[pos] - 1;
+      p[ix] = nums[i];
       c[pos]--;
     }
-
     for (int i = 0; i < nums.length; i++) {
       nums[i] = p[i];
     }
@@ -76,7 +72,7 @@ public class RadixSort {
     for (int exp = 1; max / exp > 0; exp *= 10) {
       radixSort(nums, exp);
     }
-    System.out.println("ss ： " + Arrays.toString(nums));
+    System.out.println("原数组 ： " + Arrays.toString(nums));
   }
 
   public static int maxNum(int[] nums) {
