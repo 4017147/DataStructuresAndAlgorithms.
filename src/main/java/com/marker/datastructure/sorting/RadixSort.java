@@ -37,6 +37,48 @@ public class RadixSort {
     return p;
   }
 
+  public static int max(int[] nums) {
+    int max = Integer.MIN_VALUE;
+    for (int i : nums) {
+      max = Math.max(i, max);
+    }
+    return max;
+  }
+
+  public static int[] radixSort(int[] nums, int exp) {
+    int[] c = new int[10];
+ 
+    for (int i = 0; i < nums.length; i++) {
+      int cp = (nums[i] / exp) % 10;
+      c[cp]++;
+    }
+    for (int i = 1; i < c.length; i++) {
+      c[i] += c[i - 1];
+    }
+
+    int p[] = new int[nums.length];
+
+    for (int i = nums.length - 1; i >= 0; i--) {
+      int pos = (nums[i] / exp) % 10;
+      int index = c[pos] - 1;
+      p[index] = nums[i];
+      c[pos]--;
+    }
+
+    for (int i = 0; i < nums.length; i++) {
+      nums[i] = p[i];
+    }
+    return p;
+  }
+
+  public static void sort(int[] nums) {
+    int max = maxNum(nums);
+    for (int exp = 1; max / exp > 0; exp *= 10) {
+      radixSort(nums, exp);
+    }
+    System.out.println("ss ： " + Arrays.toString(nums));
+  }
+
   public static int maxNum(int[] nums) {
     int max = Integer.MIN_VALUE;
     for (int i : nums) {
@@ -47,14 +89,15 @@ public class RadixSort {
 
   public static void main(String[] args) {
     int[] target8 = {53, 3, 542, 748, 14, 214, 154, 63, 616};
-
-    int exp; // 指数。当对数组按各位进行排序时，exp=1；按十位进行排序时，exp=10；...
-    int max = maxNum(target8); // 数组a中的最大值
-    // 从个位开始，对数组a按"指数"进行排序
-    for (exp = 1; max / exp > 0; exp *= 10) {
-//      System.out.println(exp);
-      target8 = countSort(target8, exp);
-    }
-    System.out.println("原数组 ： " + Arrays.toString(target8));
+    sort(target8);
+//    System.out.println("原数组 ： " + Arrays.toString(target8));
+//    int exp; // 指数。当对数组按各位进行排序时，exp=1；按十位进行排序时，exp=10；...
+//    int max = maxNum(target8); // 数组a中的最大值
+//    // 从个位开始，对数组a按"指数"进行排序
+//    for (exp = 1; max / exp > 0; exp *= 10) {
+////      System.out.println(exp);
+//      target8 = countSort(target8, exp);
+//    }
+//    System.out.println("原数组 ： " + Arrays.toString(target8));
   }
 }

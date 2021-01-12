@@ -51,6 +51,26 @@ public class ShellSort {
 
   }
 
+  public static void sort2(int[] arr) {
+    for (int gap = arr.length / 2; gap > 0; gap /= 2) {
+      for (int i = gap; i < arr.length; i++) {
+        int j = i;
+//        while (j - gap >= 0 && arr[j] < arr[j - gap]) {
+//          swap(arr, j, j - gap);
+//          j -= gap;
+//        }
+        int temp = arr[j];
+        if (arr[j] < arr[j - gap]) {
+          while (j - gap >= 0 && temp < arr[j - gap]) {
+            arr[j] = arr[j - gap];
+            j -= gap;
+          }
+          arr[j] = temp;
+        }
+      }
+    }
+  }
+
   /**
    * 交换数组元素
    * 
@@ -66,7 +86,7 @@ public class ShellSort {
 
   public static void main(String[] args) {
     int[] nums = {12, 4, 13, 25, 92, 11, 9, 3, 2};
-    sort(nums);
+    sort2(nums);
     System.out.println(Arrays.toString(nums));
   }
 }

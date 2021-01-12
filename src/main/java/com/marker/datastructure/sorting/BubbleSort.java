@@ -44,16 +44,32 @@ public class BubbleSort {
     }
   }
 
+  public static void sort(int[] arr) {
+    for (int i = 0; i < arr.length - 1; i++) {
+      for (int j = i; j < arr.length - i - 1; j++) {
+        if (arr[j + 1] < arr[j]) swap(arr, j + 1, j);
+      }
+    }
+  }
+
+  public static void swap(int[] arr, int a, int b) {
+    int temp = arr[a];
+    arr[a] = arr[b];
+    arr[b] = temp;
+  }
+
   public static void main(String[] args) {
     BubbleSort bubbleSort = new BubbleSort();
 //    int[] nums = {2, 12, 34, 3, 4, 5, 10, 33};
 //    bubbleSort.bubbleSort(nums);
 //    System.out.println(Arrays.toString(nums));
-    System.out.println("\n----------------------\n");
-    System.out.println("优化冒泡排序 ： ");
-    int[] nums = {1, 2, 3, 4, 5, 8, 7, 6};
-    System.out.println("原数组 ： " + Arrays.toString(nums));
-    bubbleSort.optimizeBubbleSort(nums);
+//    System.out.println("\n----------------------\n");
+//    System.out.println("优化冒泡排序 ： ");
+//    int[] nums = {1, 2, 3, 4, 5, 8, 7, 6};
+//    System.out.println("原数组 ： " + Arrays.toString(nums));
+//    bubbleSort.optimizeBubbleSort(nums);
+    int[] nums = {2, 12, 34, 3, 4, 5, 10, 33};
+    sort(nums);
     System.out.println(Arrays.toString(nums));
   }
 

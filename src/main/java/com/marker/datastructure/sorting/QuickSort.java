@@ -18,7 +18,8 @@ import java.util.Arrays;
  * 
  * 
  * 内部排序(在排序过程中数据元素完全在内存)
- * @describe 
+ * 
+ * @describe
  * @author marker.li lyl
  * @date 2021/01/08
  */
@@ -88,6 +89,61 @@ public class QuickSort {
     return rightIndex;
   }
 
+  public static void sort(int[] nums, int left, int right) {
+    if (left < right) {
+      int base_index = p3(nums, left, right);
+      sort(nums, left, base_index - 1);
+      sort(nums, base_index + 1, right);
+    }
+  }
+
+  public static int p(int[] nums, int left, int right) {
+    int povit = nums[left];
+    int l = left + 1;
+    int r = right;
+    while (l <= r) {
+      while (l <= r && nums[r] > povit)
+        r--;
+      while (l <= r && nums[l] <= povit)
+        l++;
+      if (l < r) swap(nums, l, r);
+    }
+    swap(nums, left, r);
+    return r;
+  }
+
+  public static int p3(int[] nums, int left, int right) {
+    int povit = nums[left];
+    while (left < right) {
+      while (left < right && nums[right] <= povit) {
+        right--;
+      }
+      nums[left] = nums[right];
+      while (left < right && nums[left] >= povit) {
+        left++;
+      }
+      nums[right] = nums[left];
+    }
+    nums[left] = povit;
+    return left;
+  }
+
+  public static int p2(int[] nums, int left, int right) {
+    int povit = nums[left];
+    while (left < right) {
+      while (left < right && nums[right] >= povit) {
+        right--;
+      }
+      nums[left] = nums[right];
+      while (left < right && nums[left] <= povit) {
+        left++;
+      }
+      nums[right] = nums[left];
+    }
+    nums[left] = povit;
+    return left;
+  }
+
   public static void swap(int[] nums, int left, int right) {
     int temp = nums[left];
     nums[left] = nums[right];
@@ -95,10 +151,10 @@ public class QuickSort {
   }
 
   public static void main(String[] args) {
-//    int[] target6 = {2, 12, 34, 3, 4, 5, 10, 33};
-    int[] target6 = {12, 2, 3, 17};
+    int[] target6 = {2, 12, 34, 3, 4, 5, 10, 33};
+//    int[] target6 = {12, 2, 3, 17};
     System.out.println("原数组 ： " + Arrays.toString(target6));
-    QuickSort.quickSort(target6, 0, target6.length - 1);
+    sort(target6, 0, target6.length - 1);
     System.out.println("排序后 ： " + Arrays.toString(target6));
   }
 }
